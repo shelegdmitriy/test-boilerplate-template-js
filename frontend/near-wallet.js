@@ -24,21 +24,21 @@ export class Wallet {
   network;
   createAccessKeyFor;
 
+  // eslint-disable-next-line no-unused-vars
   constructor({ createAccessKeyFor = undefined, network = 'testnet' }) {
     // Login to a wallet passing a contractId will create a local
     // key, so the user skips signing non-payable transactions.
     // Omitting the accountId will result in the user being
     // asked to sign all transactions.
-    this.createAccessKeyFor = createAccessKeyFor
-    this.network = 'testnet'
+    this.createAccessKeyFor = createAccessKeyFor;
+    this.network = 'testnet';
   }
 
   // To be called when the website loads
   async startUp() {
     this.walletSelector = await setupWalletSelector({
       network: this.network,
-      modules: [setupMyNearWallet({ iconUrl: MyNearIconUrl }),
-      setupLedger({ iconUrl: LedgerIconUrl })],
+      modules: [setupMyNearWallet({ iconUrl: MyNearIconUrl }), setupLedger({ iconUrl: LedgerIconUrl })],
     });
 
     const isSignedIn = this.walletSelector.isSignedIn();
